@@ -1,0 +1,92 @@
+#+Title: Stochastic Processes HW01
+#+Author: Ali Mehmandoost (963624020)
+#+Date: November 10, 2017
+\newpage
+* Coin flipping
+\begin{equation}
+\[ P[HH|B] =  (\frac{3}{4})^{2} = 0.5625 \]
+\[ P[HH] = P[A]P[HH|A] + P[B]P[HH|B] = \frac{1}{2}(\frac{1}{4})^2 + \frac{1}{2}(\frac{3}{4})^2 = 0.3125 \]
+\[ P[B|HH] = \frac{ P[HH|B] P[B] }{ P[HH] } = \frac{ 0.5625 \times \frac{1}{2} }{ 0.3125 } = 0.9 \]
+\end{equation}
+
+* Bernouli trials and binomially distribution
+** A
+Lets define event A as at least 1 success in n trials and event B as failure in all the trials.
+\begin{equation}
+\[ P(B) = (1-P)^n \]
+\[ P(A) = 1 - P(B) = 1 - (1-P)^n\]
+\end{equation}
+** B
+Lets define event A as K successes in n trials.
+
+\begin{equation}
+\[P(A) = \binom{n}{k}p^{K}(1-p)^{n-K}\]
+\end{equation}  
+
+* Tea Time with De Morgan
+** A
+
+\begin{equation}
+\[ A  \subset B \implies A \cap \bar{B} = \emptyset \implies P[ A \cap \bar{B}] =  P[A]  + P[\bar{B}]\]
+\end{equation}
+\begin{equation}
+\[P[B]-P[\bar{A} \cap B] =  P[B] - (1-P[ \overline{ \bar{A} \cap B} ]) = P[B] - ( 1 - P[A \cup \bar{B}] )\]
+\[= P[B] - ( 1 - P[A] -P[\bar{B}]) = P[B]+P[\bar{B}]-1 + P[A] = P[A] \]
+\end{equation}
+
+** B
+\begin{equation}
+\[ (I) A  \subset B \implies B = A \cup (B-A) \]
+\[ (II) (B-A) \cap A = \emptyset \implies P[ A \cup (B-A) ] = P[A] + P[(B-A)] \]
+\[ (III) P[(B-A)] \geq 0\]
+\end{equation}
+\begin{equation}
+\[ P[B]  \stackrel{I}{=} P[ A \cup (B-A) ] \stackrel{II}{=} P[A] + P[(B-A)]  \stackrel{III}{\implies} P[B] \geq P[A] \]
+\end{equation}
+
+* Independence
+\begin{equation}
+\[ (I) P[A \cap B] + P[A \cap \bar{B}] = P[A] \implies P[A \cap B] = P[A] - P[A \cap \bar{B}] \]
+\[ (II) P[A] P[B] = P[A](1-P[\bar{B}]) = P[A] - P[A]P[\bar{B}] \]
+\[ P[A \cap B] = P[A]P[B]  \stackrel{II}{=} P[A] - P[A]P[\bar{B}]  \stackrel{I}{\implies} P[A] - P[A \cap \bar{B}] = P[A] - P[A]P[\bar{B}]\]
+\[ \implies P[A \cap \bar{B}] = P[A]P[\bar{B}] \]
+\end{equation}
+
+
+* PDF Validity
+** Binomial distribution:
+\begin{equation}
+\[f(x) = \binom{n}{x}p^{x}(1-p)^{n-x}\]
+\[1)  0 < p < 1, f(x) \geq 0\]
+\[2) \sum_{x=0}^{n} f(x) = \sum_{x=0}^{n} \binom{n}{x}p^{x}(1-p)^{n-x} = [ 1-p+p]^{n} = 1^{n} =1\]
+\[ note: (a+b)^n = \sum_{x=0}^{n} \binom{n}{x}b^{x}a^{n-x}\]
+\end{equation}
+
+** Poisson distribution:
+\begin{equation}
+\[ f(x) = \frac{\lambda^{x}e^{-\lambda}}{x!} \text{, for [x = 0, 1,2,3,...] } \and \lambda > 0  \]
+\[ 1) x! > 0, \lambda^x \geq 0, e^{-\lambda} \geq 0 \implies f(x) \geq 0 \]
+\[ 2) \sum_{x=0}^{n} f(x) = \sum_{x=0}^{\infty} \frac{\lambda^{x}e^{-\lambda}}{x!} = e^{-\lambda} \sum_{x=0}^{\infty} \frac{\lambda^{x}}{x!}  = e^{-\lambda} e^{\lambda} = 1\]
+\[\text{note: Maclaurin series}: [1 + \frac{\lambda}{1!} + \frac{\lambda^{2}}{2!}+... = e^{\lambda}] \]
+\end{equation}
+
+** Exponential distribution:
+\begin{equation}
+\[ f(x) = \lambda e^{-\lambda x }, \lambda > 0  \]
+\[ 1) f(x) \geq 0 \]
+\[ 2) \int_{0}^{\infty} f(x) =  \int_{0}^{\infty} \lambda e^{-\lambda x } = [0 - (-1)] = 1\] 
+\end{equation}
+
+** Uniform distribution:
+\begin{equation}
+\[ f(x) = \frac{1}{b-a} \ ,a \leq x \leq b  \]
+\[ 1) f(x) \geq 0 \]
+\[ 2) \int_{a}^{b} f(x) =  \int_{a}^{b} \frac{1}{b-a} = 1\] 
+\end{equation}
+
+** P[{n}] = 2^{-n}, N = {1, 2, ...}
+\begin{equation}
+\[ f(x) = 2^{-x} \text{ for x= [1, 2, 3, ...]}  \]
+\[ 1) f(x) \geq 0 \]
+\[ 2) \sum_{x=1}^{n}  2^{-x} = \frac{\frac{1}{2}} {1-\frac{1}{2}} = 1\] 
+\end{equation}
