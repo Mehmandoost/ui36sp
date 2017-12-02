@@ -1,0 +1,254 @@
+#+Title: Stochastic Processes HW02 [Draft]
+#+Author: Ali Mehmandoost (963624020)
+#+Date: November 25, 2017
+#+OPTIONS: toc:1
+\newpage
+* Coin flipping
+\begin{equation}
+
+\begin{equation}
+\[F(x,y)  = 
+\begin{cases}
+      \frac{1}{4}, &(0,0) \\
+      \frac{1}{4}, &(0,1) \\
+      \frac{1}{4}, &(1,0) \\
+      \frac{1}{4}, &(1,1)
+    \end{cases} \]
+\end{equation}
+
+\end{equation}
+
+* Divergent integral
+The boundaries in Question doesn't make any sense.
+
+
+#+BEGIN_COMMENT
+, Assuming f(x,y) is 
+
+\begin{equation}
+\[f(x,y) = \begin{cases}
+      \frac{1}{y} & 0<x<y, 0<y<1 \\
+      0 & ow
+    \end{cases}
+\]
+\end{equation}
+
+\begin{equation}
+\[P(X+Y<\frac{1}{2} | X<Y ) = \frac{P(X+Y< \frac{1}{2})}{ P(X<Y)} = \frac{1-P(X+Y>1/2)}{P(Y>X)}\]
+\[ \frac{ 1 - \int_{\frac{1}{2}}^{1} \frac{1}{y}   \int_{\frac{1}{2}}^{1} dx dy } { \int_{0}^{1} \frac{1}{y} \int_{0}^{y}dx dy } =  \frac{ 1+\frac{1}{2}ln(\frac{1}{2})}{1} = 0.6534\]
+\end{equation} 
+
+#+END_COMMENT
+
+
+* Estimation of the minimum
+
+
+\begin{equation}
+\[ Y =  min(X_1, X_2, ... ,X_n) \]
+\[ F(y) = P(Y < y) = 1 - P(Y>y) = 1 - P( min(X_1, X_2, ... ,X_n) > y) \]
+\[ min(X_1, X_2, ... ,X_n) > y \text{ exactly when } X_i > y  \implies \]
+\[ F(y) = 1-P(X_1> y) P(X_2 > y) ... P(X_n > Y) = 1 - P( X > y )^n = 1 - (\frac{b-y}{b-a})^n \]
+\[
+F(y) = 
+\begin{cases}
+      1 - (\frac{b-y}{b-a})^n ,y \in (a,b) \\
+      0 , y<a \\
+      1, y > b
+    \end{cases} \]
+
+\[
+f(y) = \frac{dF(y)}{dy} = 
+F(y) = 
+\begin{cases}
+      (\frac{n}{b-a})(\frac{b-y}{b-a})^(n-1) ,y \in (a,b) \\
+      0 , otherwise 
+    \end{cases} 
+\]
+\[
+E[y] = \int_{-\infty}^{\infty} y f(y)dy = \frac{b+na}{n+1}
+\] 
+\end{equation}
+
+* Conditional estimation
+\begin{equation}
+\[P(X=2) = \sum_{y = 0}^{2} \frac{e^{-2}}{y!(2-y)!} = \frac{e^{-2}}{0!2!} + \frac{e^{-2}}{1!1!} + \frac{e^{-2}}{2!0!}  = \frac{e^{-2}}{2} + \frac{e^{-2}}{1} + \frac{e^{-2}}{2} = \frac{4e^{-2}}{2} = 2e^{-2}\]
+\[P(Y|X=2) = \frac{P(Y,X=2)}{P(X=2)} = \frac { \frac{e^{-2}}{y!(2-y!)} } { 2e^{-2} } = \frac{1}{2 y! (2-y)!},\ for\ y = 0,1,2\]
+\[E[Y|X=2] = \sum_{y=0}^{1} y  \frac{2}{2 y! (2-y)!} = 0 \frac{1}{(2\ 0!)(2-0)!} + 1 \frac{1}{(2\ 1!)(2-1)!} + 2\frac{1}{(2\ 2!)(2-2)!} =\]
+\[ 0 + \frac{1}{2} + \frac{1}{2} = 1\]
+
+\end{equation} 
+* 5 Accidents happen
+Success = an accident-free day\\
+\begin{equation}
+\[\lambda = 2\]
+\[P(success) = P(X=0) = \frac{e^(-2) 2^0}{0!} = e^{-2} = 0.1353\]
+\[P(\text{4 Success in 3}) = \binom{7}{4} (e^{-2})^4 (1-e^{-2})^3 = 0.0075\]
+\end{equation}
+
+* Fire Station
+We want to minimize E[ |PlaceOfFire - FireStationLocation| ]\\
+Let PlaceOfFire be x and FireStationLocation be s
+\begin{equation}
+\[E[|x-S|] = \int_{0}^{s} (s-x)  \lambda e^{-\lambda x } dx +  \int_{s}^{\infty} (x-s) \lambda e^{-\lambda x } dx = s + \frac{1}{\lambda} 2 e^{-s \lambda} + \frac{1}{\lambda} \]
+\[ \frac{d[E[|x-S|]}{ds} = 1 - 2e^{-s\lambda} = 0 \implies s = \frac{ln}{\lambda}\]
+
+\end{equation}
+* Passenger frequency
+Average Passanger per bus $\frac{1}{19} \sum_{i = 1}^{19}i = 10$.\\
+Number of bus per day = 30.\\
+Average number of passengers entering station per day = 10 * 30 = 300
+* independent  distribution
+** A
+\begin{equation}
+\[\int_{0}^{\infty} \int_{0}^{y} e^{-y} dxdy= \int_{0}^{\infty} ye^{-y} = (-y-1)e^{-y}| = 0 - (-1) = 1\]
+\end{equation} 
+** B
+\begin{equation}
+\[ f_x (x) = \int_{x}^{\infty}  e^{-y} dy= e^{-x}\]
+\[ f_y (y) = \int_{0}^{y}  e^{-y} dx= y e^{-y} \]
+\end{equation} 
+
+** C
+No 
+\begin{equation}
+\[ e^{-y} \neq ye^{-(x+y)} \]
+\[f(x,y) \neq f_x(x) F_y(y)\]
+\end{equation} 
+
+* Papoulis#4
+** Papoulis#4-6
+*** A 
+\begin{equation}
+\[ F(R) = \frac{1}{105-95} (R-95) \implies p = 0.1(104-95) - 0.1(96-95) = 0.8 \]
+\end{equation} 
+*** B
+\begin{equation}
+\[ p = G(2.5) - G(-2.5) = 0.9876 \]
+\end{equation} 
+** Papoulis#4-26
+\begin{equation}
+\[ p = e^{0/T} - e^{- \frac{\frac{T}{4}}{T}} = 1 - e^{-\frac{1}{4}} = 0.22,\ np = 220,\ npq = 171.6 k_2 = 100 \]
+\[ \frac{k_2 - np}{ \sqrt{npq}} = -9.16 \]
+\[ P(0 \leq k \leq 100) = G(9.16) = 0 \]
+\end{equation} 
+** Papoulis#4-36
+*** A
+\begin{equation}
+\[P_1 = \binom{200}{1} \times 0.02 \times 0.09^{199}\]
+\end{equation} 
+
+* Papoulis#5
+** Papoulis#5-21
+if y > 0 then 
+\begin{equation}
+\[ F_y (y|x \geq 0) =  F_x (\sqrt{y}|x \geq 0) + F_x (-\sqrt{y}|x \geq 0)  = F_x (\sqrt{y}|x \geq 0)\]
+\[ F_x (\sqrt{y}|x \geq 0) = \frac{P( 0 < x < \sqrt{y} )}{ P(x \geq 0) } = \frac{F_x(\sqrt{y})-F_X(0)}{1-F__X(0)} \]
+\[ f_y(y|x\geq 0 ) = \frac{d}{dy} F_y(\sqrt{y} | x \geq 0 ) = \frac{f_x(\sqrt{y})}{2\sqrt{y}[1-F_x(0)]}\]
+\end{equation} 
+
+** Papoulis#5-50
+
+\begin{equation}
+\[ P(X = k) = P("TT..TH" \cup "HH...HT") = P(TT...TH)+P(HH...HT) = q^kp+q^kp\]\[\ k=1,2,... \]
+\end{equation} 
+\begin{equation}
+
+\[E(X) = \sum_{k=1}^{\infty}Kp(X=K) = \sum_{k=1}^{\infty}Kq^kp + \sum_{k=1}^{\infty}kp^kq = \]
+\[pq( \sum_{k=1}^{\infty} kq^{k-1} + \sum_{k=1}^{\infty} kp^{k-1}) =\]
+\[ pq (\frac{d}{dq} \sum_{k=1}^{\infty}q^k + \frac{d}{dp}\sum_{k=1}^{\infty} p^k) = \frac{p}{q} + \frac{q}{p} \]
+
+\end{equation} 
+** Papoulis#5-51
+*** A
+\begin{equation}
+\[ p = \frac{M}{N} \]
+\[ q = 1-p = \frac{N-M}{M} < 1 \]
+\[P(X=K) = \binom{n}{k}p^kq^{n-k} , k= 0,1,2,...,n\]
+\end{equation} 
+
+*** B
+\begin{equation}
+\[P(X=k) = \frac{\binom{M}{k}\binom{N-M}{nk}}{\binom{N}{n}}\]
+\end{equation} 
+
+*** C
+\begin{equation}
+\[P(X=k) = \frac{M!}{k!(M-k)!} \frac{(N-M)!}{(n-k)!(N-M-n+k)!} \frac{n!(N-n)!)}{N!} = \] 
+\[\binom{n}{k} (\frac{M}{N})^k(\frac{N-M}{N})^{n-k} = \binom{n}{k}p^k(1-p)^{n-k}\]
+\end{equation} 
+
+** Papoulis#5-52
+*** A
+\begin{equation}
+\[P(X=k) = \binom{k-1}{r-1}p^{r-1}q^{k-r}p = \binom{k-1}{r-1}p^rq^{k-r},\ k=r, r+1, ...\]
+\end{equation} 
+*** B
+**** I
+\begin{equation}
+\[\binom{k-1}{r-1}\]
+\end{equation} 
+**** II
+\begin{equation}
+\[1\]
+\end{equation} 
+**** III
+\begin{equation}
+\[\binom{m+n-k}{n-r}\]
+\end{equation} 
+**** P
+\begin{equation}
+\[P(X=k)\binom{k-1}{r-1}\frac{ \binom{m+n-k}{n-r}  }{ \binom{n+m}{n} }, \ k = r,r+1,...\]
+\end{equation} 
+*** C
+\begin{equation}
+\[P( x = k ) = \binom{k-1}{r-1}  \frac{(m+n-k)!}{(n-r)!(m-k+r)!} \frac{n!m!}{(m+n)!} \]
+\[\approx \binom{k-1}{r-1}  (\frac{n}{m+n})^r (\frac{m}{m+n-r}) (\frac{m-1}{m+n-r-1}) ... (\frac{m-k+r+1}{m+n-k+1}) \]
+\[\approx \binom{k-1}{r-1}  (\frac{n}{m+n})^r (\frac{m}{m+n})^{k-r}  = \binom{k-1}{r-1} p^r q^{k-r}\]
+\end{equation} 
+
+* Papoulis#6
+** Papoulis#6-5
+
+*** A
+\begin{equation}
+\[F_z(Z) = \int_{y=-z}^{z} \int_{-\sqrt{z^2-y^2}}^{\sqrt{z^2-y^2}} f_{xy} dx dy = \frac{z}{\sigma^2}e^{-z/2\sigma^2}U(z)\]
+\end{equation} 
+
+*** B
+\begin{equation}
+\[F_z(Z) &= \int_{y=-z}^{z} \frac{1}{\sqrt{z-y^2}} (2. \frac{1}{2\pi\sigma^2} e^{(z-y^2+y^2)/2\sigma^2}) dy\]
+\[  &= \frac{e^{-z/2\sigma^2}}{\pi\sigma^2} \int_{0}^{\sqrt{z}} \frac{1}{\sqrt{z-y^2}} dy  = \frac{e^{-z/2\sigma^2}}{\pi\sigma^2} \int_{0}^{\pi/2} \frac{\sqrt{z}cos \thera }{ \sqrt{z}cos \thera } d \theta = \frac{1}{2\sigma^2}e^{-z/2\sigma^2}U(z)\]
+\end{equation} 
+*** C
+\begin{equation}
+\[U= X - Y = N(0,2\sigma^2) \iff Var(U) = Var(X) + Var(Y) = 2\sigma^2\]
+\end{equation} 
+
+** Papoulis#6-16
+*** A
+\begin{equation}
+\[y=y_1 < g(x) \implies\]
+\[F(x,y) = P{ x \leq x, y \leq y_1} = P{y \leq y_1} = F_y(y_1)\]
+\[y=y_2 > g(x) \implies\]
+\[F(x,y) = P{ x \leq x, y \leq y_2} = P{x \leq x} = F_x(x)\]
+\end{equation} 
+*** B
+\begin{equation}
+\[y=y_1 < g(x) \implies\]
+\[F(x,y) = P{ x \leq x, y \leq y_1} = 0\]
+\[y=y_2 > g(x) \implies\]
+\[F(x,y) = P{ x \leq x, y \leq y_2} = P{x \leq x}  -P{y > y_2} = F_x(x) - [1-F_y(y_2)]
+\end{equation} 
+
+** Papoulis#6-25
+\begin{equation}
+\[f_{XY}(x,y) = f_X(x)F_Y(y) = \frac{1}{\lambda^2}e^{\frac{-(x+y)}{\lambda}} U(x)U(y)\]
+\[ Z = X+Y \]
+\[\phi_Z(\omega) = \phi_X(\omega) \frac{1}{(1-j\omega\lambda)^2}\]
+\[f_Z(z) = \frac{z}{\lambda^2} e^{-\frac{x}{y}}U(z)\]
+\[P(Z>2\lambda) = \int_{2\lambda}^{\infty} \frac{2}{\lambda^2}e^{-\frac{z}{\lambda}} dz= 0.406\]
+\[W = Y -X\]
+\[P(Y-X > \lambda) = P(W>\lambda) = \int_{\lambda}^{\infty} f_W(w)dw = \int_{0}^{\infty}\frac{1}{\lambda^2} e^{ - \frac{w+2y}{\lambda}} dy = \frac{1}{2\lambda} e^{-\frac{2}{\lambda}}\]
+\[ P(Y-X > \lambda ) = P(W > \lambda)  = \int_{\lambda}^{\infty} \frac{1}{2\lambda} e^{-\frac{w}{\lambda}} dw = \frac{1}{2e}\]
+\end{equation} 
